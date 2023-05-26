@@ -48,7 +48,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <header className="bg-white border-b-[1px] border-gray-50 text-gray-900 shadow-lg md:block">
+            <header className="bg-[#fffde7] border-b-[1px] border-gray-50 text-gray-900 shadow-lg md:block">
                 <div className="mx-auto flex justify-between container items-center h-24">
                     <Link to={"/"} className="p-0 flex justify-center items-center ">
                         <img className=" w-32 h-32" src={img} alt="" />
@@ -92,7 +92,7 @@ const NavBar = () => {
 
                 </div>
             </header>
-            <nav className="bg-white flex flex-row justify-center items-center py-0 font-semibold shadow-lg text-base">
+            <nav className="bg-[#fffde7] shadow-[inset_20px_0_50px_#ecebd6,inset_-10px_0_20px_#ecebd6] animate-[expand-from-left_0.3s_1.5s_cubic-bezier(.02,0.01,0.47,1)_forwards] flex flex-row justify-center items-center py-0 font-semibold text-base">
                 <ul className="mx-auto flex items-center">
                     <li className="p-4 hover:text-[#8549ba]">
                         <Link to={"/"} href="">

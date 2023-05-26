@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Search from "./Search"
 
 const SeriesList = () => {
@@ -24,9 +25,9 @@ const SeriesList = () => {
                                 <svg className="text-gray-600 hover:text-gray-800" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16"><path fill="currentColor" d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" /></svg>
                             </button>
                         </div>
-                        <button className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-[#8549ba] hover:bg-[#6e3d99] focus:outline-none rounded-sm">
+                        <Link to={"/series-list/post"} className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-[#8549ba] hover:bg-[#6e3d99] focus:outline-none rounded-sm">
                             <p className="text-sm font-medium leading-none text-white">Add Task</p>
-                        </button>
+                        </Link>
                     </div>
 
                     <div className="bg-white shadow-md rounded ">

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const GET_SERIE = "GET_SERIE";
-const GET_GENDER = "GET_GENDER";
+export const GET_SERIE = "GET_SERIE";
+export const GET_GENDER = "GET_GENDER";
 
 export const createSerie = async (newSerie) => {
    return await axios.post("http://localhost:3001/serie", newSerie)
