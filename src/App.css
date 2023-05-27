@@ -28,7 +28,8 @@
 .selct:hover > .selector,
 .selector:hover {
   visibility: visible;
-  display: block;
+  display: flex;
+
 }
 
 .body_Drox:hover{
