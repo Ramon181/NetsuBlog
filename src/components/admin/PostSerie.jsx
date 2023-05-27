@@ -264,22 +264,22 @@ const PostSerie = () => {
                 </div>
             </form>
             <Modal
-          isOpen={openAddProduct}
-          onRequestClose={() => setIsOpenAddProduct(false)}
-          overlayClassName={{
-            base: "overlay-base",
-            afterOpen: "overlay-after",
-            beforeClose: "overlay-before",
-          }}
-          className={{
-            base: "content-base",
-            afterOpen: "content-after",
-            beforeClose: "content-before",
-          }}
-          closeTimeoutMS={500}
-        >
-          <AddSerie setOpenError={setIsOpenAddProduct} />
-        </Modal>
+                isOpen={openAddProduct}
+                onRequestClose={() => setIsOpenAddProduct(false)}
+                overlayClassName={{
+                    base: "overlay-base",
+                    afterOpen: "overlay-after",
+                    beforeClose: "overlay-before",
+                }}
+                className={{
+                    base: "content-base",
+                    afterOpen: "content-after",
+                    beforeClose: "content-before",
+                }}
+                closeTimeoutMS={500}
+            >
+                <AddSerie setOpenError={setIsOpenAddProduct} />
+            </Modal>
         </div>
     )
 }
