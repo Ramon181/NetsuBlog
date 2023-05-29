@@ -11,7 +11,8 @@ import CharactersList from './components/admin/CharactersList'
 import UsersList from './components/admin/UsersList'
 import PostList from './components/admin/PostList'
 import InquestsList from './components/admin/InquestsList'
-import PostSerie from './components/admin/PostSerie'
+import PostSerie from './components/form/PostSerie'
+import PostCharacter from './components/form/PostCharacter'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route path='/post-list' element={<PostList />} />
             <Route path='/inquests-list' element={<InquestsList />} />
             <Route path="/series-list/post" element={<PostSerie/>} />
+            <Route path='/characters-list/post' element={<PostCharacter/>} />
           </Routes>
 
         </div>) :

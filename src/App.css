@@ -29,11 +29,10 @@
 .selector:hover {
   visibility: visible;
   display: flex;
-
 }
 
-.body_Drox:hover{
-    color: #8549ba;
+.body_Drox:hover {
+  color: #8549ba;
 }
 
 .texto {
@@ -62,8 +61,7 @@
 
 /* Modales */
 
-.overlay-base {
-    padding: 1rem;
+/* .overlay-base {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -76,65 +74,35 @@
     transition-timing-function: ease-in-out;
     outline: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+} */
+
+.overlay-base {
+   position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
+    transition-property: background-color, opacity;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+    outline: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .overlay-after {
-    background-color: rgba(0, 0, 0, 0.8);
-    opacity: 1;
-}
-
-.overlay-before {
-    background-color: rgba(0, 0, 0, 0);
-    opacity: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 1;
 }
 
 .content-base {
-    position: relative;
-    /*
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    */
-    border: 0;
-    outline: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 0%;
-    width: 0%;
-    background-color: transparent;
-    transition-property: background-color, width, height;
-    transition-duration: 500ms;
-    transition-timing-function: ease-in-out;
-}
-
-.content-after {
-    width: 20%;
-    height: 20%;
-}
-
-.content-box {
-    width: 70%;
-    height: 20%;
-}
-
-@media screen and (max-width: 1000px) {
-    .content-box{
-        width: 90%;
-    }
-}
-
-@media screen and (max-width: 520px) {
-    .content-box{
-        width: 92%;
-    }
-}
-
-.content-before {
-    width: 0%;
-    height: 0%;
-    background-color: transparent;
+  width: auto;
+  height: auto;
 }
