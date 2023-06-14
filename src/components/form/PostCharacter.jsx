@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 import Modal from "react-modal";
-import AddSerie from "../modals/addSerie";
+import Exito from "../modals/Exito";
 import { allAbility, crearCharcter } from "../../redux/actions/CharacterAction";
 import { getSerie } from "../../redux/actions/SerieAction";
 import AddAbility from "../modals/addAbility";
@@ -141,13 +141,15 @@ const PostCharacter = () => {
     console.log(info);
     console.log(abilityAll)
 
+    const link = "/characters-list"
+
     return (
-        <div className="mx-auto bg-gray-100 w-full h-screen px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto bg-gray-100 w-full h-full px-4 py-10 sm:px-6 lg:px-8">
 
             <form action="" onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-[45rem] space-y-4">
                 <div className=" flex flex-row space-x-2">
 
-                    <div className=" w-full">
+                    <div className=" w-full ">
                         <label htmlFor="name" className="sr-only">Nombre del Personaje</label>
 
                         <div className="relative">
@@ -266,7 +268,20 @@ const PostCharacter = () => {
                         </div>
                     </div>
                 </div>
-
+                <div>
+                    {
+                        info.ability.map(e => (
+                            <div key={e}>
+                                {e}
+                            </div>
+                        ))
+                    }
+                </div>
+                <div className=" w-full flex justify-end">
+                    <button type="button" onClick={() => setIsOpenAddAbility(true)} className=" p-2 bg-gray-600 text-white font-semibold hover:bg-gray-500  rounded-sm">
+                        Agregar Habilidad
+                    </button>
+                </div>
 
                 <div className="relative selct">
                     <div className="bg-white flex border cursor-pointer border-gray-200 rounded items-center">
@@ -297,7 +312,7 @@ const PostCharacter = () => {
                     </div>
                     {
                         info.serieId ? null : (
-                            <div className="absolute  h-[200px] overflow-y-scroll scroll-smooth selector rounded shadow bg-white overflow-hidden hidden peer-checked:flex z-10 flex-col w-full mt-1 border border-gray-200">
+                            <div className="absolute max-h-[200px] overflow-y-scroll scroll-smooth selector rounded shadow bg-white overflow-hidden hidden peer-checked:flex z-10 flex-col w-full mt-1 border border-gray-200">
                                 {
                                     allSerie.map(event => (
                                         info.serieId.includes(event.name) ? null :
@@ -314,7 +329,7 @@ const PostCharacter = () => {
 
 
                 </div>
-                
+
 
                 <div className="flex w-full justify-center">
                     <label htmlFor="upload-img"
@@ -375,19 +390,8 @@ const PostCharacter = () => {
 
                     </div>
                 </div>
-                <div>
-                    {
-                        info.ability.map(e => (
-                            <div key={e}>
-                                {e}
-                            </div>
-                        ))
-                    }
-                </div>
-                <button type="button" onClick={() => setIsOpenAddAbility(true)} className=" w-full justify-center flex flex-row items-center">
-                    Agregar Habilidad
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 12 12"><path fill="currentColor" d="M2.47 3.28a.75.75 0 0 1 1.06-1.06l3.25 3.25a.75.75 0 0 1 0 1.06L3.53 9.78a.75.75 0 0 1-1.06-1.06L5.19 6L2.47 3.28ZM9.75 10a.75.75 0 0 0 .75-.75v-6.5a.75.75 0 0 0-1.5 0v6.5c0 .414.336.75.75.75Z" /></svg>
-                </button>
+
+
                 <div className="flex items-center justify-between">
                     <button
                         type="submit"
@@ -412,7 +416,7 @@ const PostCharacter = () => {
                 }}
                 closeTimeoutMS={500}
             >
-                <AddSerie setOpenError={setIsOpenAddProduct} />
+                <Exito setClose={setIsOpenAddProduct} setNavegate={link}/>
             </Modal>
             <Modal
                 isOpen={openAddAbility}

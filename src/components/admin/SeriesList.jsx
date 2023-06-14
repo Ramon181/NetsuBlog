@@ -41,18 +41,18 @@ const SeriesList = () => {
                         </Link>
                     </div>
 
-                    <div className="bg-white shadow-md rounded ">
+                    <div className="bg-white overflow-x-scroll scroll-smooth scrollbar shadow-md rounded ">
 
                         <table className="min-w-max w-full table-auto">
                             <thead>
                                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                    <th className="py-3 px-3 text-left">name</th>
-                                    <th className="py-3 px-3 text-left">decipcion</th>
-                                    <th className="py-3 px-3 text-left">author</th>
-                                    <th className="py-3 px-3 text-left">country</th>
-                                    <th className="py-3 px-3 text-left">demography</th>
+                                    <th className="py-3 px-3 text-left">Nombre</th>
+                                    <th className="py-3 px-3 text-left">Descripción</th>
+                                    <th className="py-3 px-3 text-left">Autor</th>
+                                    <th className="py-3 px-3 text-left">Pais</th>
+                                    <th className="py-3 px-3 text-left">Demografía</th>
                                     <th className="py-3 px-3 text-left">Genero</th>
-                                    <th className="py-3 px-3 text-center">Actions</th>
+                                    <th className="py-3 px-3 text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody className="text-gray-600 text-sm font-light">

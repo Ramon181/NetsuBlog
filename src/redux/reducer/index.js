@@ -1,6 +1,7 @@
 import { USER_ERROR, USER_INFO } from "../actions/UserAction";
 import { GET_SERIE, GET_GENDER } from "../actions/SerieAction";
 import { ALL_ABILITY, ALL_CHARACTERS } from "../actions/CharacterAction";
+import { GET_POST, GET_POST_ID } from "../actions/PostAction";
 
 const initialState = {
   user: {},
@@ -9,6 +10,8 @@ const initialState = {
   gender: [],
   ability: [],
   characters: [],
+  post:[],
+  postId:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,6 +49,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ability: action.payload,
       };
+
+    case GET_POST:
+      return {
+        ...state,
+        post: action.payload
+      }
+
+    case GET_POST_ID:
+      return{
+        ...state,
+        postId: action.payload
+      }
 
     default:
       return state;

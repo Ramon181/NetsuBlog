@@ -9,14 +9,14 @@ const AddAbility = ({ name, setName, description, abilityAll, setDescription, in
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (abilityAll[0].name.includes(name)) {
+        if (abilityAll && abilityAll.name && abilityAll[0].name.includes(name)) {
             setInfo({
                 ...info,
                 ability: [...info.ability, name]
             })
             setIsOpenAddAbility(false)
             navegation("/characters-list/post")
-        } else {
+        } else if(name || !abilityAll) {
             const newAbility = {
                 name: name,
                 description: description,
@@ -32,6 +32,7 @@ const AddAbility = ({ name, setName, description, abilityAll, setDescription, in
         }
 
     }
+    console.log(name, description)
     return (
         <div className="w-full max-w-7xl py-8 px-0 rounded-sm shadow  bg-gray-50 text-gray-900">
 

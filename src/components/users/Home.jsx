@@ -1,112 +1,108 @@
-import { useSelector } from "react-redux"
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom";
+import { getPost } from "../../redux/actions/PostAction";
+import { getSerie } from "../../redux/actions/SerieAction";
 
 const Home = () => {
-    const user = useSelector(state => state.user)
-    console.log(user)
-    console.log(JSON.parse(localStorage.getItem("user")))
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const slides = [
+        { id: 1, content: 'https://source.unsplash.com/1600x900/?beach' },
+        { id: 2, content: 'https://source.unsplash.com/1600x900/?cat' },
+        { id: 3, content: 'https://source.unsplash.com/1600x900/?dog' },
+        { id: 4, content: 'https://source.unsplash.com/1600x900/?lego' },
+        { id: 5, content: 'https://source.unsplash.com/1600x900/?textures&patterns' },
+    ];
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    };
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    };
+    const allPost = useSelector(state => state.post);
+    const gerAnime = useSelector(state => state.series);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPost())
+        dispatch(getSerie())
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))
+        }, 60000)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [dispatch]);
+
     return (
-        <section className="px-5 py-10 dark:bg-gray-800 dark:text-gray-100">
-            <div className="container grid grid-cols-12 mx-auto gap-y-6 md:gap-10">
-                <div className="flex flex-col justify-between col-span-12 py-2 space-y-8 md:space-y-16 md:col-span-3">
-                    <div className="flex flex-col space-y-8 md:space-y-12">
-                        <div className="flex flex-col space-y-2">
-                            <h3 className="flex items-center space-x-2 dark:text-gray-400">
-                                <span className="flex-shrink-0 w-2 h-2 bg-[#8549ba] uppercase rounded-full "></span>
-                                <span className="text-xs font-bold tracking-wider uppercase">Exclusive</span>
-                            </h3>
-                            <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Donec sed elit quis odio mollis dignissim eget et nulla.</a>
-                            <p className="text-xs dark:text-gray-400">47 minutes ago by
-                                <a rel="noopener noreferrer" href="#" className="hover:underline dark:text-violet-400">Leroy Jenkins</a>
-                            </p>
-                        </div>
-                        <div className="flex flex-col space-y-2">
-                            <h3 className="flex items-center space-x-2 dark:text-gray-400">
-                                <span className="flex-shrink-0 w-2 h-2 uppercase rounded-full bg-[#8549ba] "></span>
-                                <span className="text-xs font-bold tracking-wider uppercase">Exclusive</span>
-                            </h3>
-                            <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Ut fermentum nunc quis ipsum laoreet condimentum.</a>
-                            <p className="text-xs dark:text-gray-400">2 hours ago by
-                                <a rel="noopener noreferrer" href="#" className="hover:underline dark:text-violet-400">Leroy Jenkins</a>
-                            </p>
-                        </div>
-                        <div className="flex flex-col space-y-2">
-                            <h3 className="flex items-center space-x-2 dark:text-gray-400">
-                                <span className="flex-shrink-0 w-2 h-2 bg-[#8549ba] uppercase rounded-full"></span>
-                                <span className="text-xs font-bold tracking-wider uppercase">Exclusive</span>
-                            </h3>
-                            <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Nunc nec ipsum lobortis, pulvinar neque sed.</a>
-                            <p className="text-xs dark:text-gray-400">4 hours ago by
-                                <a rel="noopener noreferrer" href="#" className="hover:underline dark:text-violet-400">Leroy Jenkins</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                        <div className="flex w-full h-1 bg-opacity-10 dark:bg-violet-400">
-                            <div className="w-1/2 h-full dark:bg-violet-400"></div>
-                        </div>
-                        <a rel="noopener noreferrer" href="#" className="flex items-center justify-between w-full">
-                            <span className="text-xs font-bold tracking-wider uppercase">See more exclusives</span>
-                            <svg viewBox="0 0 24 24" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4 strokeCurrent dark:text-violet-400">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
+        <section className="bg-gray-800 text-gray-100 space-y-8">
+            <div className="slider">
+                <img src={slides[currentSlide].content} alt="Image" className="relative inset-0 w-full h-[30rem]" />
+
+                <button onClick={prevSlide}
+                    className="absolute left-14 top-[60%] -translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
+                    <svg className=" w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+                <button onClick={nextSlide}
+                    className="absolute right-14 top-[60%] -translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
+                    <svg className=" w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div className=" w-full space-y-6 p-10">
+                <div className="space-y-4 text-center flex items-center flex-col">
+                    <h2 className="text-4xl font-bold">Bienvenido a mi blog de anime</h2>
+                    <div className="bg-[#8549ba] w-40 h-1"></div>
+                    <p className="font-serif text-lg text-gray-400">
+                        En mi blog, me apasiona el mundo del anime y quiero compartir contigo todo lo relacionado con esta forma de entretenimiento. Aquí encontrarás una amplia variedad de contenido educativo y divertido diseñado específicamente para aquellos que desean profundizar en el fascinante universo del anime.
+                        Mi objetivo principal es proporcionarte información valiosa sobre diferentes aspectos del anime, desde recomendaciones de series y películas destacadas, hasta análisis de personajes, tramas y géneros. Te brindo reseñas en profundidad para ayudarte a descubrir nuevos títulos y a comprender mejor los que ya conoces.
+                    </p>
+                </div>
+                <div className="space-y-4 text-center flex items-center flex-col">
+                    <h2 className="text-4xl font-bold">Últimas publicaciones</h2>
+                    <div className="bg-[#8549ba] w-40 h-1"></div>
+                    <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
+
+                        {
+                            allPost.map((post) => (
+                                <article key={post.id} className="flex flex-col rounded-sm bg-gray-900">
+                                    <a rel="noopener noreferrer" href="#" aria-label="Te nulla oportere reprimique his dolorum">
+                                        <img alt="" className="rounded-sm object-cover w-full h-52 bg-gray-500" src={post.articles[0].article} />
+                                    </a>
+                                    <div className="flex flex-col flex-1 text-left p-6">
+                                        <h3 className="flex-1 py-2 text-lg font-semibold leading-snug">{post.title}</h3>
+                                        <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs text-gray-400">
+                                            <span>{post.serie.name}</span>
+                                            <Link to={`/blog/post/${post.id}`} rel="noopener noreferrer" href="#" className="text-xs tracking-wider uppercase hover:underline dark:text-violet-400">Ver mas</Link>
+                                            {/* <span>2.1K views</span> */}
+                                        </div>
+                                    </div>
+                                </article>
+                            ))
+                        }
                     </div>
                 </div>
-                <div className="relative rounded-sm flex col-span-12 bg-center bg-no-repeat bg-cover dark:bg-gray-500 xl:col-span-6 lg:col-span-5 md:col-span-9 min-h-96 bg-[url('https://source.unsplash.com/random/239x319')]">
-                    <span className="absolute px-1 pb-2 text-xs font-bold uppercase border-b-2 left-6 top-6 dark:border-violet-400 dark:text-gray-100">paris, france</span>
-                    <a className="flex flex-col items-center justify-end p-6 text-center sm:p-8 group dark:via-transparent flex-grow-1 bg-gradient-to-b dark:from-gray-900 dark:to-gray-900">
-                        <span className="flex items-center mb-4 space-x-2 dark:text-violet-400">
-                            <span className="relative flex-shrink-0 w-2 h-2 rounded-full dark:bg-violet-400">
-                                <span className="absolute flex-shrink-0 w-3 h-3 rounded-full -left-1 -top-1 animate-ping dark:bg-violet-400"></span>
-                            </span>
-                            
-                        </span>
-                        <h1 rel="noopener noreferrer" href="#" className="font-serif text-2xl font-semibold group-hover:underline dark:text-gray-100">Morbi mattis justo est, ac consectetur dui eleifend vitae. Donec venenatis?</h1>
-                    </a>
-                </div>
-                <div className="hidden py-2 xl:col-span-3 lg:col-span-4 md:hidden lg:block">
-                    <div className="mb-8 space-x-5 border-b-2 border-opacity-10 dark:border-violet-400">
-                        <button type="button" className="pb-5 text-xs font-bold uppercase border-b-2 dark:border-violet-400">Latest</button>
-                        <button type="button" className="pb-5 text-xs font-bold uppercase border-b-2 dark:border-transparent dark:text-gray-400">Popular</button>
-                    </div>
-                    <div className="flex flex-col divide-y divide-gray-700">
-                        <div className="flex px-1 py-4">
-                            <img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/244x324" />
-                            <div className="flex flex-col flex-grow">
-                                <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Aenean ac tristique lorem, ut mollis dui.</a>
-                                <p className="mt-auto text-xs dark:text-gray-400">5 minutes ago
-                                    <a rel="noopener noreferrer" href="#" className="block dark:text-blue-400 lg:ml-2 lg:inline hover:underline">Politics</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex px-1 py-4">
-                            <img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/245x325" />
-                            <div className="flex flex-col flex-grow">
-                                <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Nulla consectetur efficitur.</a>
-                                <p className="mt-auto text-xs dark:text-gray-400">14 minutes ago
-                                    <a rel="noopener noreferrer" href="#" className="block dark:text-blue-400 lg:ml-2 lg:inline hover:underline">Sports</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex px-1 py-4">
-                            <img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/246x326" />
-                            <div className="flex flex-col flex-grow">
-                                <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Vitae semper augue purus tincidunt libero.</a>
-                                <p className="mt-auto text-xs dark:text-gray-400">22 minutes ago
-                                    <a rel="noopener noreferrer" href="#" className="block dark:text-blue-400 lg:ml-2 lg:inline hover:underline">World</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex px-1 py-4">
-                            <img alt="" className="flex-shrink-0 object-cover w-20 h-20 mr-4 dark:bg-gray-500" src="https://source.unsplash.com/random/247x327" />
-                            <div className="flex flex-col flex-grow">
-                                <a rel="noopener noreferrer" href="#" className="font-serif hover:underline">Suspendisse potenti.</a>
-                                <p className="mt-auto text-xs dark:text-gray-400">37 minutes ago
-                                    <a rel="noopener noreferrer" href="#" className="block dark:text-blue-400 lg:ml-2 lg:inline hover:underline">Business</a>
-                                </p>
-                            </div>
-                        </div>
+                <div className="space-y-4 text-center flex flex-col items-center">
+                    <h2 className="text-4xl font-bold">Series de anime</h2>
+                    <div className="bg-[#8549ba] w-40 h-1"></div>
+                    <div>
+                        {
+                            gerAnime.map(e => (
+                                <div key={e.id}>
+                                    <img src={e.img} alt="" />
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>

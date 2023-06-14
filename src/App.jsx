@@ -13,6 +13,10 @@ import PostList from './components/admin/PostList'
 import InquestsList from './components/admin/InquestsList'
 import PostSerie from './components/form/PostSerie'
 import PostCharacter from './components/form/PostCharacter'
+import PostPost from './components/form/PostPost'
+import Footer from './components/users/Footer'
+import Blog from './components/users/Blog'
+import Post from './components/users/Post'
 
 function App() {
 
@@ -32,6 +36,7 @@ function App() {
             <Route path='/inquests-list' element={<InquestsList />} />
             <Route path="/series-list/post" element={<PostSerie/>} />
             <Route path='/characters-list/post' element={<PostCharacter/>} />
+            <Route path='/post-list/post' element={<PostPost/>} />
           </Routes>
 
         </div>) :
@@ -40,7 +45,10 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/register' element={<SingUp />} />
+              <Route path='/blog' element={<Blog/>}/>
+              <Route path="/blog/post/:id" element={<Post/>} />
             </Routes>
+            <Footer/>
           </>)
       }
     </>

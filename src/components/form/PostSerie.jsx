@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 import Modal from "react-modal";
 import { createSerie, getGender } from "../../redux/actions/SerieAction"
-import AddSerie from "../modals/addSerie";
+import Exito from "../modals/Exito.jsx";
 
 const PostSerie = () => {
 
@@ -93,6 +93,8 @@ const PostSerie = () => {
     useEffect(() => {
         dispatch(getGender())
     }, [dispatch]);
+
+    const link = "/series-list"
 
     console.log(info)
     console.log(loading)
@@ -278,7 +280,7 @@ const PostSerie = () => {
                 }}
                 closeTimeoutMS={500}
             >
-                <AddSerie setOpenError={setIsOpenAddProduct} />
+                <Exito setClose={setIsOpenAddProduct} setNavegate={link}/>
             </Modal>
         </div>
     )

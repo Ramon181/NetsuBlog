@@ -6,6 +6,7 @@ import img from "../../images/netsu.png"
 import SingIn from "./SingIn";
 import { useDispatch, useSelector } from "react-redux";
 import { userState } from "../../redux/actions/UserAction";
+import { getSerie } from "../../redux/actions/SerieAction";
 
 
 const NavBar = () => {
@@ -14,6 +15,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const navegate = useNavigate()
     const user = useSelector(state => state.user)
+    const allSerie = useSelector(state => state.series)
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -31,6 +33,7 @@ const NavBar = () => {
                 })
             );
         }
+        dispatch(getSerie())
     }, [dispatch]);
 
     const singOff = () => {
@@ -48,7 +51,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <header className="bg-[#fffde7] border-b-[1px] border-gray-50 text-gray-900 shadow-lg md:block">
+            <header className="bg-[#17172e] text-gray-50 shadow-lg md:block">
                 <div className="mx-auto flex justify-between container items-center h-24">
                     <Link to={"/"} className="p-0 flex justify-center items-center ">
                         <img className=" w-32 h-32" src={img} alt="" />
@@ -77,13 +80,11 @@ const NavBar = () => {
                             </div>
                         ) : (
                             <div className=" flex flex-row justify-center items-center font-semibold">
-                                <button onClick={() => setLoginModal(true)} className=" flex flex-row justify-center items-center border-r-2 border-gray-400 px-1 hover:text-[#8549ba]">
-                                    <svg className=" mx-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z" /></svg>
-                                    Sing in
+                                <button onClick={() => setLoginModal(true)} className=" flex flex-row justify-center items-center px-1 hover:text-[#8549ba]">
+                                     Ingresar
                                 </button>
-                                <Link to={"/register"} className=" flex flex-row justify-center items-center px-1 hover:text-[#8549ba]">
-                                    <svg className=" mx-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m0 1.9a2.1 2.1 0 1 1 0 4.2A2.1 2.1 0 0 1 12.9 8A2.1 2.1 0 0 1 15 5.9M4 7v3H1v2h3v3h2v-3h3v-2H6V7H4m11 6c-2.67 0-8 1.33-8 4v3h16v-3c0-2.67-5.33-4-8-4m0 1.9c2.97 0 6.1 1.46 6.1 2.1v1.1H8.9V17c0-.64 3.1-2.1 6.1-2.1Z" /></svg>
-                                    Sing up
+                                <Link to={"/register"} className=" flex flex-row justify-center items-center px-1 hover:text-[#8549ba] border-l border-gray-200 transition-all">
+                                    Crear Cuenta
                                 </Link>
 
                             </div>
@@ -92,87 +93,50 @@ const NavBar = () => {
 
                 </div>
             </header>
-            <nav className="bg-[#fffde7] shadow-[inset_20px_0_50px_#ecebd6,inset_-10px_0_20px_#ecebd6] animate-[expand-from-left_0.3s_1.5s_cubic-bezier(.02,0.01,0.47,1)_forwards] flex flex-row justify-center items-center py-0 font-semibold text-base">
+            <nav className="bg-[#17172e] text-white  flex flex-row justify-center items-center py-0 font-semibold text-lg">
                 <ul className="mx-auto flex items-center">
                     <li className="p-4 hover:text-[#8549ba]">
-                        <Link to={"/"} href="">
-                            <span>Home</span>
+                        <Link to={"/"} >
+                            <span>Inicio</span>
                         </Link>
                     </li>
                     <li className="p-4 hover:text-[#8549ba]">
-                        <a href="">
+                        <Link to={"/blog"} >
                             <span>Blog</span>
-                        </a>
+                        </Link>
 
                     </li>
                     <li className="p-4 body_Drox">
-                        <a href="">
+                        <Link to={"/series"} >
                             <span>Series</span>
-                        </a>
+                        </Link>
                         <ul className="drox">
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Naruto
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Demon Slayer
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Dragon Ball
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Inazuma Eleven
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    My Hero Academy
-                                </a>
-                            </li>
+                            {
+                                allSerie.map(e => (
+                                    <li key={e.id} className="texto">
+                                        <Link to={`/series/${e.id}`} className="linke" >
+                                            {e.name}
+                                        </Link>
+                                    </li>
+                                ))
+                            }
                         </ul>
                     </li>
                     <li className="p-4 body_Drox ">
-                        <a href="">
-                            <span>Characters</span>
-                        </a>
+                        <Link to={"/characters"} >
+                            <span>Personajes</span>
+                        </Link>
                         <ul className="drox">
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Naruto
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Demon Slayer
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Dragon Ball
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    Inazuma Eleven
-                                </a>
-                            </li>
-                            <li className="texto">
-                                <a className="linke" href="">
-                                    My Hero Academy
-                                </a>
-                            </li>
+                            {
+                                allSerie.map(e => (
+                                    <li key={e.id} className="texto">
+                                        <Link to={"/characters"} className="linke">
+                                            {e.name}
+                                        </Link>
+                                    </li>
+                                ))
+                            }
                         </ul>
-                    </li>
-                    <li className="p-4 hover:text-[#8549ba]">
-                        <a href="">
-                            <span>Inquest</span>
-                        </a>
                     </li>
                 </ul>
             </nav>
