@@ -17,6 +17,7 @@ import PostPost from './components/form/PostPost'
 import Footer from './components/users/Footer'
 import Blog from './components/users/Blog'
 import Post from './components/users/Post'
+import Series from './components/users/Series'
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/register' element={<SingUp />} />
               <Route path='/blog' element={<Blog/>}/>
+              <Route path='/series' element={<Series/>}/>
               <Route path="/blog/post/:id" element={<Post/>} />
             </Routes>
             <Footer/>

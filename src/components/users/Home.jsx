@@ -95,11 +95,11 @@ const Home = () => {
                 <div className="space-y-4 text-center flex flex-col items-center">
                     <h2 className="text-4xl font-bold">Series de anime</h2>
                     <div className="bg-[#8549ba] w-40 h-1"></div>
-                    <div>
+                    <div className=" flex justify-center flex-grow space-x-4 space-y-4 w-2/4 items-center">
                         {
                             gerAnime.map(e => (
                                 <div key={e.id}>
-                                    <img src={e.img} alt="" />
+                                    <img className=" w-50 h-20" src={e.img} alt="" />
                                 </div>
                             ))
                         }
