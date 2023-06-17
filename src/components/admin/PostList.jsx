@@ -58,9 +58,14 @@ const PostList = () => {
                                 {
                                     allPosts.map(e => (
                                         <tr key={e.id} className="border-b border-gray-200 hover:bg-gray-100">
-                                            <td className="py-3 px-6 text-left whitespace-nowrap">
-                                                <div className="flex items-center w-full justify-between min-w-0 max-w-[7rem]">
+                                            <td className="py-3 px-3 text-left whitespace-nowrap">
+                                                <div className="flex items-center">
+                                                    <div className="mr-2">
+                                                        <img className=" w-6 h-6 rounded-full" src={e.img} alt="" />
+                                                    </div>
+                                                    <div className="flex items-center w-full justify-between min-w-0 max-w-[7rem]">
                                                     <span className="font-medium truncate">{e.title}</span>
+                                                </div>
                                                 </div>
                                             </td>
                                             <td className="py-3 px-6 text-left">
@@ -69,13 +74,20 @@ const PostList = () => {
                                                 </div>
                                             </td>
                                             <td className="py-3 px-6 text-left">
-                                                <span className="font-medium truncate">{e.serie.name}</span>
+                                            <div className="flex items-center w-full justify-between min-w-0 max-w-[7rem]">
+                                                    {
+                                                        e.series?.map((e) => (
+                                                            <span key={e.id} className="font-medium truncate">{e.name}</span>
+
+                                                        ) )
+                                                    }
+                                                </div>
                                             </td>
                                             <td className="py-3 px-6 text-left">
                                                 <div className="flex items-center justify-center">
                                                     {
-                                                        e.articles?.map((art, index) => (
-                                                            <img key={index} className="w-6 h-6 rounded-full border-gray-200 border transform hover:scale-125" src={art.article} />
+                                                        e.articles?.map((e) => (
+                                                            <img key={e.id} className="w-6 h-6 rounded-full border-gray-200 border transform hover:scale-125" src={e.article} />
 
                                                         ))
                                                     }
@@ -85,8 +97,8 @@ const PostList = () => {
                                             <td className="py-3 px-6 text-left">
                                                 <div className="flex items-center w-full justify-between min-w-0 max-w-[7rem]">
                                                     {
-                                                        e.texts?.map((tex, index) => (
-                                                            <span key={index} className="font-medium truncate">{tex.text}</span>
+                                                        e.articles?.map((e) => (
+                                                            <span key={e.id} className="font-medium truncate">{e.text}</span>
 
                                                         ) )
                                                     }

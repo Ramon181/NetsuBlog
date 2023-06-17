@@ -20,10 +20,10 @@ const Blog = () => {
                 <Link to={`/blog/post/${getAllPost[0].id}`} className="mb-4 md:mb-0 w-full md:w-2/3 relative rounded-sm inline-block h-[24rem]" href="">
                     <div className="absolute left-0 bottom-0 w-full h-full z-10 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.7))]"></div>
                     <img
-                        src={getAllPost[0].articles[0].article}
+                        src={getAllPost[0].img}
                         className="absolute left-0 top-0 w-full h-full rounded-sm z-0 object-cover" />
                     <div className="p-4 absolute bottom-0 left-0 z-20">
-                        <span className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2">{getAllPost[0].serie.name}</span>
+                        <span className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2">{getAllPost[0].series.name}</span>
                         <h2 className="text-4xl w-7/12 font-semibold text-gray-100 leading-tight">
                             {getAllPost[0].title}
                         </h2>
@@ -35,10 +35,10 @@ const Blog = () => {
                 >
                     <div className="absolute left-0 top-0 w-full h-full z-10 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.7))]" ></div>
                     <img
-                        src={getAllPost[0].articles[0].article}
+                        src={getAllPost[0].img}
                         className="absolute left-0 top-0 w-full h-full rounded-sm z-0 object-cover" />
                     <div className="p-4 absolute bottom-0 left-0 z-20">
-                        <span className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2">{getAllPost[0].serie.name}</span>
+                        <span className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2">{getAllPost[0].series.name}</span>
                         <h2 className="text-3xl font-semibold text-gray-100 leading-tight">{getAllPost[0].title}</h2>
 
                     </div>
@@ -57,7 +57,7 @@ const Blog = () => {
                                     className="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75"
                                     title="deit is very important"
                                 >
-                                    <img className=" w-full h-full" src={e.articles[0].article} alt="" />
+                                    <img className=" w-full h-full" src={e.img} alt="" />
                                 </div>
                                 <div className=" px-4 pb-4 pt-2 flex flex-col justify-between leading-normal">
                                     <div>
@@ -88,7 +88,7 @@ const Blog = () => {
                                         <a href="#" className="flex items-center text-white cursor-pointer">
                                             <img className="inline-block h-6 w-6 rounded-full bg-green-300 mr-3" src={e.img} alt="" />
                                             {e.name}
-                                            <span className="text-white font-semibold ml-auto">23 articles</span>
+                                            <span className="text-white font-semibold ml-auto">{e.posts.length} articulos</span>
                                             <i className='text-white bx bx-right-arrow-alt ml-1'></i>
                                         </a>
                                     </li>

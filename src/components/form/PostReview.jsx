@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postReview } from "../../redux/actions/ReviewAction";
 
-const PostReview = ({ postId, getReview,reviewsRefrech}) => {
+const PostReview = ({ postId, getReview, reviewsRefrech }) => {
   const [description, setDescription] = useState("");
   const [stars, setStars] = useState(0);
 
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const modifyStars = (star) => {
+  const modifyStars = star => {
     setStars(star);
   };
 
@@ -21,15 +21,15 @@ const PostReview = ({ postId, getReview,reviewsRefrech}) => {
     } else if (stars > 0 && description.length > 3) {
       const newReview = {
         userName: user.userName,
-        postId:postId,
-        icon:user.profile,
-        description: description, 
-        stars:stars
-      }
+        postId: postId,
+        icon: user.profile,
+        description: description,
+        stars: stars,
+      };
       dispatch(postReview(newReview));
       setStars(0);
       setDescription("");
-      reviewsRefrech()
+      reviewsRefrech();
     } else {
       console.log("No se Pudo Enviar El Formulario");
     }
@@ -37,12 +37,14 @@ const PostReview = ({ postId, getReview,reviewsRefrech}) => {
 
   const stars5 = [1, 2, 3, 4, 5];
 
-  return (
+  console.log(user)
+
+  return user.userName === null ? null : (
     <form onSubmit={handleOnSubmit} className=" flex">
       <div className="flex-shrink-0 mr-3">
         <img
           className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
-          src=""
+          src={user.profile}
           alt=""
         />
       </div>
@@ -103,7 +105,10 @@ const PostReview = ({ postId, getReview,reviewsRefrech}) => {
           <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">
             Cancelar
           </div>
-          <button type="submit" class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500">
+          <button
+            type="submit"
+            class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500"
+          >
             Publicar
           </button>
         </div>

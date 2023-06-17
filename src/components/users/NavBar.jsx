@@ -110,22 +110,11 @@ const NavBar = () => {
                         <Link to={"/series"} >
                             <span>Series</span>
                         </Link>
-                        <ul className="drox">
-                            {
-                                allSerie.map(e => (
-                                    <li key={e.id} className="texto">
-                                        <Link to={`/series/${e.id}`} className="linke" >
-                                            {e.name}
-                                        </Link>
-                                    </li>
-                                ))
-                            }
-                        </ul>
                     </li>
                     <li className="p-4 body_Drox ">
-                        <Link to={"/characters"} >
+                        <a href="#">
                             <span>Personajes</span>
-                        </Link>
+                        </a>
                         <ul className="drox">
                             {
                                 allSerie.map(e => (
