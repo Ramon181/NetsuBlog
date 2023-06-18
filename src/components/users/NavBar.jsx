@@ -51,7 +51,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <header className="bg-[#17172e] text-gray-50 shadow-lg md:block">
+            <header className="bg-[#ffffff] text-gray-900 border-b-2 shadow-lg md:block">
                 <div className="mx-auto flex justify-between container items-center h-24">
                     <Link to={"/"} className="p-0 flex justify-center items-center ">
                         <img className=" w-32 h-32" src={img} alt="" />
@@ -93,7 +93,7 @@ const NavBar = () => {
 
                 </div>
             </header>
-            <nav className="bg-[#17172e] text-white  flex flex-row justify-center items-center py-0 font-semibold text-lg">
+            <nav className="bg-[#ffffff] text-gray-900 border-b-2 flex flex-row justify-center items-center py-0 font-semibold text-lg">
                 <ul className="mx-auto flex items-center">
                     <li className="p-4 hover:text-[#8549ba]">
                         <Link to={"/"} >
@@ -112,8 +112,9 @@ const NavBar = () => {
                         </Link>
                     </li>
                     <li className="p-4 body_Drox ">
-                        <a href="#">
+                        <a className=" flex flex-row justify-center items-center" href="#">
                             <span>Personajes</span>
+                            <svg className=" text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="rotate(180 12 12)"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m17 14l-5-5m0 0l-5 5"/></g></svg>
                         </a>
                         <ul className="drox">
                             {
@@ -129,6 +130,11 @@ const NavBar = () => {
                     </li>
                 </ul>
             </nav>
+            {/* <div className=" w-full h-10 bg-[#8549ba]">
+                <h2>
+                    Hola
+                </h2>
+            </div> */}
             <Modal
                 isOpen={loginModal}
                 onRequestClose={() => setLoginModal(false)}

@@ -18,6 +18,7 @@ import Footer from './components/users/Footer'
 import Blog from './components/users/Blog'
 import Post from './components/users/Post'
 import Series from './components/users/Series'
+import Character from './components/users/Characters'
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
               <Route path='/blog' element={<Blog/>}/>
               <Route path='/series' element={<Series/>}/>
               <Route path="/blog/post/:id" element={<Post/>} />
+              <Route path='/characters' element={<Character/>} />
             </Routes>
             <Footer/>
           </>)

@@ -31,7 +31,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <section className="bg-gray-800 text-gray-100 space-y-8">
+    <section className="bg-gray-50 text-gray-900 space-y-8">
       <div className="slider">
         {allPost.length > 0 && (
           <img
@@ -82,9 +82,9 @@ const Home = () => {
       </div>
       <div className=" w-full space-y-6 p-10">
         <div className="space-y-4 text-center flex items-center flex-col">
-          <h2 className="text-4xl font-bold">Bienvenido a mi blog de anime</h2>
-          <div className="bg-[#8549ba] w-40 h-1"></div>
-          <p className="font-serif text-lg text-gray-400">
+          <h2 className="text-4xl font-bold animate-bounce">Bienvenido a mi blog de anime</h2>
+          <div className="bg-[#200f30] w-40 h-1"></div>
+          <p className="font-serif text-lg text-gray-600">
             En mi blog, me apasiona el mundo del anime y quiero compartir
             contigo todo lo relacionado con esta forma de entretenimiento. Aquí
             encontrarás una amplia variedad de contenido educativo y divertido
@@ -98,13 +98,13 @@ const Home = () => {
           </p>
         </div>
         <div className="space-y-4 text-center flex items-center flex-col">
-          <h2 className="text-4xl font-bold">Últimas publicaciones</h2>
-          <div className="bg-[#8549ba] w-40 h-1"></div>
+          <h2 className="text-4xl font-bold animate-bounce">Últimas publicaciones</h2>
+          <div className="bg-[#200f30] w-40 h-1"></div>
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
             {allPost.map(post => (
               <article
                 key={post.id}
-                className="flex flex-col rounded-sm bg-gray-900"
+                className="flex flex-col rounded-sm bg-gray-100 shadow-xl"
               >
                 <a
                   rel="noopener noreferrer"
@@ -121,7 +121,7 @@ const Home = () => {
                   <h3 className="flex-1 py-2 text-lg font-semibold leading-snug">
                     {post.title}
                   </h3>
-                  <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs text-gray-400">
+                  <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs text-gray-500">
                     {post.series.map(e => (
                       <span>{e.name}</span>
                     ))}
@@ -141,8 +141,8 @@ const Home = () => {
           </div>
         </div>
         <div className="space-y-4 text-center flex flex-col items-center">
-          <h2 className="text-4xl font-bold">Series</h2>
-          <div className="bg-[#8549ba] w-40 h-1"></div>
+          <h2 className="font-bold text-4xl animate-bounce">Series</h2>
+          <div className="bg-[#200f30] w-40 h-1"></div>
           <div className=" flex justify-center flex-grow space-x-4 space-y-4 w-2/4 items-center">
             {gerAnime.map(e => (
               <div key={e.id}>

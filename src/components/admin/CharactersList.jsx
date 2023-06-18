@@ -86,7 +86,9 @@ const CharactersList = () => {
                                                 <span className="font-medium">{character.weight}</span>
                                             </td>
                                             <td className="py-3 px-6 text-left">
-                                                <span className="font-medium">{character.state}</span>
+                                            <div className="flex items-center w-full justify-between min-w-0 max-w-[10rem]">
+                                                    <span className="truncate font-medium">{character.state}</span>
+                                                </div>
                                             </td>
                                             <td className="py-3 px-6 text-left">
                                                 <span className="font-medium">{character.race}</span>

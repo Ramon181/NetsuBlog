@@ -13,7 +13,7 @@ const Series = () => {
     },[])
 
   return (
-    <div className="bg-gray-800 flex justify-center w-full h-full">
+    <div className="bg-gray-50 flex justify-center w-full h-screen">
       <div className=" flex justify-center flex-grow space-x-4 space-y-4 w-2/4 items-center">
         {gerAnime.map(e => (
           <div key={e.id}>
