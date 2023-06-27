@@ -33,7 +33,7 @@ const NavBar = () => {
                 })
             );
         }
-        dispatch(getSerie())
+        // dispatch(getSerie())
     }, [dispatch]);
 
     const singOff = () => {

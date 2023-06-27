@@ -5,7 +5,9 @@ import Modal from "react-modal";
 import { createSerie, getGender } from "../../redux/actions/SerieAction"
 import Exito from "../modals/Exito.jsx";
 
-const PostSerie = () => {
+Modal.setAppElement('#root');
+
+const PostSerie = ({usuario}) => {
 
     const genderAll = useSelector(state => state.gender)
     const dispatch = useDispatch()
@@ -26,6 +28,7 @@ const PostSerie = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const newSerie = {
+            userName:usuario.userName,
             name: info.name,
             description: info.description,
             author: info.author,

@@ -21,10 +21,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getPost());
-    dispatch(getSerie());
+    // dispatch(getSerie());
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev === allPost.length - 1 ? 0 : prev + 1));
-    }, 60000);
+    }, 5000);
     return () => {
       clearInterval(interval);
     };
@@ -82,8 +82,7 @@ const Home = () => {
       </div>
       <div className=" w-full space-y-6 p-10">
         <div className="space-y-4 text-center flex items-center flex-col">
-          <h2 className="text-4xl font-bold animate-bounce">Bienvenido a mi blog de anime</h2>
-          <div className="bg-[#200f30] w-40 h-1"></div>
+          <h2 className="text-4xl font-bold">Bienvenido a mi blog de anime</h2>
           <p className="font-serif text-lg text-gray-600">
             En mi blog, me apasiona el mundo del anime y quiero compartir
             contigo todo lo relacionado con esta forma de entretenimiento. Aquí
@@ -98,13 +97,12 @@ const Home = () => {
           </p>
         </div>
         <div className="space-y-4 text-center flex items-center flex-col">
-          <h2 className="text-4xl font-bold animate-bounce">Últimas publicaciones</h2>
-          <div className="bg-[#200f30] w-40 h-1"></div>
+          <h2 className="text-4xl font-bold">Últimas publicaciones</h2>
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
             {allPost.map(post => (
               <article
                 key={post.id}
-                className="flex flex-col rounded-sm bg-gray-100 shadow-xl"
+                className="flex flex-col rounded-sm bg-white shadow-xl"
               >
                 <a
                   rel="noopener noreferrer"
@@ -141,8 +139,7 @@ const Home = () => {
           </div>
         </div>
         <div className="space-y-4 text-center flex flex-col items-center">
-          <h2 className="font-bold text-4xl animate-bounce">Series</h2>
-          <div className="bg-[#200f30] w-40 h-1"></div>
+          <h2 className="font-bold text-4xl">Series</h2>
           <div className=" flex justify-center flex-grow space-x-4 space-y-4 w-2/4 items-center">
             {gerAnime.map(e => (
               <div key={e.id}>

@@ -8,9 +8,9 @@ const Series = () => {
     const gerAnime = useSelector(state => state.series)
     const dispatch = useDispatch()
 
-    useEffect(()=> {
-        dispatch(getSerie())
-    },[])
+    // useEffect(()=> {
+    //     dispatch(getSerie())
+    // },[])
 
   return (
     <div className="bg-gray-50 flex justify-center w-full h-screen">

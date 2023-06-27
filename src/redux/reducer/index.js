@@ -37,7 +37,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_SERIE:
       return {
         ...state,
-        series: action.payload,
+        series: action.payload.rows,
       };
 
     //personajes

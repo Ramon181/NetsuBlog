@@ -20,7 +20,7 @@ const SingIn = ({setLoginModal}) => {
     }
 
     return (
-        <div className="w-full max-w-md p-4 rounded-sm shadow sm:p-8 bg-gray-50 text-gray-900">
+        <div className="w-full max-w-md p-4 z-[5] rounded-sm shadow sm:p-8 bg-gray-50 text-gray-900">
             <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
             <p className="text-sm text-center text-gray-800">Dont have account?
                 <a href="#" rel="noopener noreferrer" className="focus:underline hover:underline">Sign up here</a>
