@@ -1,10 +1,22 @@
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { deleteSerie, getSerie } from "../../../redux/actions/SerieAction";
+import { useEffect, useState } from "react";
+import Modal from "react-modal";
+import {
+  deleteSerie,
+  getSerie,
+  resetSeries,
+} from "../../../redux/actions/SerieAction";
+import Delete from "./Views/Delete";
+Modal.setAppElement("#root");
 
-const ListSerie = ({usuario}) => {
+const ListSerie = ({ usuario }) => {
+  const [elimina, setElimina] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [toastSuccess, setToastSuccess] = useState(false);
+
   const series = useSelector(state => state.series);
   const dispatch = useDispatch();
 
@@ -12,19 +24,46 @@ const ListSerie = ({usuario}) => {
     if (usuario && usuario.userName) {
       const userName = usuario.userName;
       dispatch(getSerie(userName));
+      setIsLoading(false);
     }
   };
 
   const handleEliminarSerie = id => {
     dispatch(deleteSerie(usuario.userName, id));
+    setIsLoading(true);
     fetchSerie();
+    setSuccess("¡La eliminación se ha realizado correctamente!");
+    setToastSuccess(true);
+    setElimina(false);
   };
 
+  console.log(series)
   useEffect(() => {
+    setIsLoading(true);
     fetchSerie();
   }, []);
 
-  return (
+  return isLoading ? (
+    <div class="flex items-center justify-center w-full h-full">
+      <div class="flex justify-center items-center space-x-1 text-sm text-gray-700">
+        <svg
+          fill="none"
+          class="w-6 h-6 animate-spin"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+
+        <div>Loading ...</div>
+      </div>
+    </div>
+  ) : (
     <div className="overflow-x-auto">
       <div className="min-w-screen min-h-screen flex justify-center bg-gray-100 font-sans overflow-hidden">
         <div className="w-full lg:w-5/6">
@@ -112,7 +151,7 @@ const ListSerie = ({usuario}) => {
                 </tr>
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
-                {series.length &&
+                {series &&
                   series.map(event => (
                     <tr
                       key={event.id}
@@ -140,7 +179,7 @@ const ListSerie = ({usuario}) => {
                           <span>{event.author}</span>
                         </div>
                       </td>
-                    
+
                       <td className="py-3 px-3 text-left">
                         <div className="flex items-center w-full justify-between min-w-0 max-w-[10rem]">
                           {event.genders?.map(e => (
@@ -152,7 +191,7 @@ const ListSerie = ({usuario}) => {
                       </td>
                       <td className="py-3 px-3 text-center">
                         <div className="flex item-center justify-center">
-                          <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                          <Link to={`/series-list/post/${event.id}`} className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -166,10 +205,10 @@ const ListSerie = ({usuario}) => {
                                 d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                               />
                             </svg>
-                          </div>
+                          </Link>
                           <button
                             type="button"
-                            onClick={() => handleEliminarSerie(event.id)}
+                            onClick={() => setElimina(true)}
                             className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                           >
                             <svg
@@ -188,6 +227,27 @@ const ListSerie = ({usuario}) => {
                           </button>
                         </div>
                       </td>
+                      <Modal
+                        isOpen={elimina}
+                        onRequestClose={() => setElimina(false)}
+                        overlayClassName={{
+                          base: "overlay-base",
+                          afterOpen: "overlay-after",
+                          beforeClose: "overlay-before",
+                        }}
+                        className={{
+                          base: "content-base",
+                          afterOpen: "content-after",
+                          beforeClose: "content-before",
+                        }}
+                        closeTimeoutMS={500}
+                      >
+                        <Delete
+                          setClose={setElimina}
+                          id={event.id}
+                          handleEliminarSerie={handleEliminarSerie}
+                        />
+                      </Modal>
                     </tr>
                   ))}
               </tbody>
@@ -195,6 +255,59 @@ const ListSerie = ({usuario}) => {
           </div>
         </div>
       </div>
+      {toastSuccess ? (
+        <div className="fixed z-30 text-[color:var(--toast-white)] flex items-start leading-[1.6] text-sm bg-[#27d0b2] mb-[1em] p-[15px] rounded-[3px] left-0.5 bottom-0.5">
+          <div className="w-[22px] h-[22px] flex items-center justify-center bg-[rgba(255,255,255,0.2)] mr-2.5 rounded-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+            >
+              <g transform="translate(.077 .077)">
+                <g>
+                  <path
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M3.719 7.884L6.235 10.4l3.032-3.032 2.774-2.774"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div className="flex-1">
+            <p className="m-0 p-0">{success}</p>
+          </div>
+          <div
+            onClick={() => {
+              setSuccess("");
+              setToastSuccess(false);
+            }}
+            type="button"
+            className="w-[22px] h-[22px] flex items-center justify-center bg-[rgba(255,255,255,0)] transition-all duration-100 ease-[ease-in-out] cursor-pointer ml-2.5 rounded-lg hover:bg-[rgba(255,255,255,0.2)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+            >
+              <g transform="translate(.077 .077)">
+                <g>
+                  <path
+                    fill="#fff"
+                    d="M10.915 9.98l2.853-2.846a.666.666 0 00-.942-.942L9.979 9.044 7.133 6.191a.666.666 0 00-.942.942L9.044 9.98 6.19 12.826a.666.666 0 10.942.942l2.846-2.853 2.846 2.853a.666.666 0 10.942-.942z"
+                    transform="translate(-2.017 -2.018)"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

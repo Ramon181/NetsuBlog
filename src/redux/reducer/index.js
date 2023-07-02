@@ -1,5 +1,5 @@
 import { USER_ERROR, USER_INFO } from "../actions/UserAction";
-import { GET_SERIE, GET_GENDER } from "../actions/SerieAction";
+import { GET_SERIE, GET_GENDER, RESET_SERIES, SEIRE_ID } from "../actions/SerieAction";
 import { ALL_ABILITY, ALL_CHARACTERS } from "../actions/CharacterAction";
 import { GET_POST, GET_POST_ID } from "../actions/PostAction";
 import { ALL_REVIEW } from "../actions/ReviewAction";
@@ -8,6 +8,7 @@ const initialState = {
   user: {},
   errorUser: {},
   series: [],
+  serieId: {},
   gender: [],
   ability: [],
   characters: [],
@@ -39,6 +40,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         series: action.payload.rows,
       };
+    case RESET_SERIES:
+      return {
+        ...state,
+        series: []
+      }
+    case SEIRE_ID:
+      return {
+        ...state,
+        serieId: action.payload
+      }
 
     //personajes
 
