@@ -319,7 +319,7 @@ const CreateSerie = ({ usuario }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className=" w-full h-full bg-white  flex flex-col justify-center"
+      className=" w-full h-full bg-white flex flex-col justify-center"
     >
       <div className=" bg-gray-800 w-full h-full">
         <div className="h-[342px] flex justify-center items-center w-full relative overflow-hidden z-[1] m-0 rounded-b-[5px]">
@@ -575,11 +575,8 @@ const CreateSerie = ({ usuario }) => {
       <div className="p-5 bg-white rounded-b-[5px] flex flex-col items-center justify-center w-full h-full">
         {seccion &&
           seccion.map((event, index) => (
-            <div className=" m-4">
-              <div
-                key={index}
-                className="sm:mb-10 flex flex-row justify-center bg-white"
-              >
+            <div key={index} className=" m-4">
+              <div className="sm:mb-10 flex flex-row justify-center bg-white">
                 <div className=" px-10 py-10 max-w-md m-auto lg:col-span-2 mt-20 mb-20 shadow-xl rounded-xl lg:mt-10 md:shadow-xl md:rounded-xl lg:shadow-none lg:rounded-none lg:w-full lg:mb-10 lg:px-5 lg:pt-5 lg:pb-5 lg:max-w-lg bg-white">
                   <div className="input ">
                     <input
@@ -658,7 +655,7 @@ const CreateSerie = ({ usuario }) => {
                       className="input_field mt-4 "
                       required
                     >
-                      <option disabled>Selecciona un tipo</option>
+                      <option value="" disabled>Selecciona un tipo</option>
                       <option value="Serie">Serie</option>
                       <option value="Pelicula">Pelicula</option>
                       <option value="Ova">Ova</option>
@@ -666,10 +663,10 @@ const CreateSerie = ({ usuario }) => {
                   </div>
                 </div>
 
-                <div className="hidden w-[20rem] relative lg:block  lg:col-span-3">
+                <div className="hidden w-[20rem] relative lg:block lg:col-span-3">
                   {animes[index].image ? (
                     <img
-                      className="absolute rounded-[5px] inset-0 w-full h-full object-cover object-center"
+                      className="absolute rounded-[5px] inset-0 w-full object-cover object-center"
                       src={animes[index].image}
                       alt="Ad- woman on a beach"
                     />

@@ -26,7 +26,7 @@ const Exito = ({setClose, setNavegate}) => {
 				<div className="flex justify-end pt-2">
 					<button onClick={()=> navegate(setNavegate)}
 						className="focus:outline-none modal-close px-4 bg-gray-200 p-3 rounded-lg text-black hover:bg-gray-100">No</button>
-					<button onClick={()=> setClose(false)}
+					<button onClick={()=> navegate("/series-list/post")}
 						className="focus:outline-none px-4 bg-gray-800 p-3 ml-3 rounded-lg text-white hover:bg-gray-600">Si</button>
 				</div>
 			</div>
